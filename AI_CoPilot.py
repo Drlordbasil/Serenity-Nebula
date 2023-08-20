@@ -1,6 +1,4 @@
-Here is an AI chatbot program that helps the user run the provided main.py script locally on their PC:
 
-```python
 import subprocess
 
 def run_program():
@@ -30,6 +28,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-```
-
-To run this chatbot, simply save the code in a Python file (e.g., `chatbot.py`) and execute it using the command `python chatbot.py` in your command line interface. The chatbot will prompt you to enter "yes" or "no" to run the main program.
