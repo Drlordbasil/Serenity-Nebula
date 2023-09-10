@@ -5,6 +5,8 @@ import tweepy
 from typing import List, Dict
 
 # Define ContentAggregator class
+
+
 class ContentAggregator:
     def __init__(self, search_engine_api_key: str):
         self.search_engine_api_key = search_engine_api_key
@@ -87,7 +89,8 @@ class NLPProcessor:
         return "positive"
 
     def generate_summary(self, text: str) -> str:
-        summary = self.text_summarizer(text, max_length=100, min_length=30, do_sample=False)
+        summary = self.text_summarizer(
+            text, max_length=100, min_length=30, do_sample=False)
         return summary[0]["summary_text"]
 
 
@@ -99,8 +102,10 @@ class ContentPublisher:
         self.linkedin_api_key = social_media_api_keys["linkedin"]
 
     def publish_tweet(self, tweet: str):
-        auth = tweepy.OAuthHandler(self.twitter_api_key["consumer_key"], self.twitter_api_key["consumer_secret"])
-        auth.set_access_token(self.twitter_api_key["access_token"], self.twitter_api_key["access_token_secret"])
+        auth = tweepy.OAuthHandler(
+            self.twitter_api_key["consumer_key"], self.twitter_api_key["consumer_secret"])
+        auth.set_access_token(
+            self.twitter_api_key["access_token"], self.twitter_api_key["access_token_secret"])
         api = tweepy.API(auth)
         api.update_status(tweet)
 
@@ -109,7 +114,8 @@ class ContentPublisher:
         client.create_post(article)
 
     def publish_linkedin_post(self, post: Dict[str, str]):
-        client = LinkedinClient(access_token=self.linkedin_api_key["access_token"])
+        client = LinkedinClient(
+            access_token=self.linkedin_api_key["access_token"])
         client.create_post(post)
 
 
@@ -146,8 +152,10 @@ filtered_content = content_curation.filter_content(extracted_text)
 organized_content = content_curation.organize_content(filtered_content)
 
 nlp_processor = NLPProcessor()
-sentiments = [nlp_processor.analyze_sentiment(content) for content in organized_content]
-summaries = [nlp_processor.generate_summary(content) for content in organized_content]
+sentiments = [nlp_processor.analyze_sentiment(
+    content) for content in organized_content]
+summaries = [nlp_processor.generate_summary(
+    content) for content in organized_content]
 
 social_media_api_keys = {
     "twitter": {
