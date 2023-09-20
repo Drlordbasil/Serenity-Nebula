@@ -1,5 +1,4 @@
 
-@@ -0,0 +1,184 @@
 import requests
 from bs4 import BeautifulSoup
 from transformers import pipeline
